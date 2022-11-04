@@ -15,17 +15,17 @@ describe("todo api test suite", () => {
                         return done();
                     })
 });
-test("ADD /",  (done) => {
+test("add todo /",  (done) => {
     let record = {
         "title": "Test",
         "description": "Testing",
         "done": false
     }
-    request(app).post("/addToDo")
+    request(app).post("/todoadd")
     .send(record)
     .expect('Content-Type', /json/)
     .end((err, res)=>{
-        expect(res.body.length).equals(4)
+        expect(res.body.length).toBe(4)
         if(err) return done(err);
         
         return done();
