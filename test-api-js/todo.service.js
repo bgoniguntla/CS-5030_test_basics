@@ -5,11 +5,11 @@ class todoservice{
             "description": "D1",
             "done": false
         },{
-            "title": "T1",
+            "title": "T2",
             "description": "D1",
             "done": false
         },{
-            "title": "T1",
+            "title": "T3",
             "description": "D1",
             "done": false
         }]
@@ -27,12 +27,24 @@ class todoservice{
         return this.todo_data.todo;
     }
 
-    delete_todo(id){
-        // Your code here
-    }
+    delete_todo(req){
+        for (var i =0; i < this.todo_data.todo.length; i++) {
+             if (this.todo_data.todo[i].title == req.params.title) {
+                 this.todo_data.todo.splice(i,1);
+                 break;
+             }
+         }
+         return this.todo_data.todo;
+     }
 
-    update_todo(id, todo){
-        // Your code here
+     update_todo(request) {
+        console.log('request---', request.params.id)
+        for(let todoData of this.todo_data.todo) {
+            if (todoData.title == request.params.id){
+                todoData.description=request.body.description
+            }
+        }
+        return this.todo_data.todo
     }
 }
 

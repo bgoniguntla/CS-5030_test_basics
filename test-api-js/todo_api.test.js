@@ -31,4 +31,34 @@ test("add todo /",  (done) => {
         return done();
     })
 })
+
+test("delete /", (done) => {
+    let title = "T2"
+    request(app).delete("/tododelete/T2")
+    .end((err, res)=>{
+        console.log(res.body)
+        expect(res.body.length).toBe(2)
+        if(err) return done(err);
+        return done();
+    })  
+})
+
+test("update todo /", (done) => {
+    let record = {
+        "title": "T3",
+        "description": "update testing",
+        "done": false
+    }
+
+    request(app).put("/todoupdate/T3")
+    .send(record)
+    .expect('Content-Type', /json/)
+    .end((err, res)=>{
+        expect(res.body.length).toBe(3)
+        if(err) return done(err);
+        return done();
+    })
+            
+})
+
 });
