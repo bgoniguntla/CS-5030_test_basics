@@ -25,8 +25,7 @@ test("ADD /",  (done) => {
     .send(record)
     .expect('Content-Type', /json/)
     .end((err, res)=>{
-        console.log(res.body.length)
-        .expect(res.body.length).equals(4)
+        expect(res.body.length).equals(4)
         if(err) return done(err);
         
         return done();
