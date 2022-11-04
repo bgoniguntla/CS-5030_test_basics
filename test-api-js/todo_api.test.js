@@ -15,4 +15,21 @@ describe("todo api test suite", () => {
                         return done();
                     })
 });
+test("ADD /",  (done) => {
+    let record = {
+        "title": "Test",
+        "description": "Testing",
+        "done": false
+    }
+    request(app).post("/addToDo")
+    .send(record)
+    .expect('Content-Type', /json/)
+    .end((err, res)=>{
+        console.log(res.body.length)
+        .expect(res.body.length).equals(4)
+        if(err) return done(err);
+        
+        return done();
+    })
+})
 });
